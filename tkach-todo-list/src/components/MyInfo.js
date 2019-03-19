@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import styled from 'styled-components';
 
 
-const Info = styled.div`
+const TodoItem = styled.div`
     display: flex;
     justify-content: space-evenly;
     background: transparent;
@@ -11,28 +11,13 @@ const Info = styled.div`
     color: palevioletred;
     margin: 0 1em;
     padding: 0.25em 1em;
-    
-    
 `;
 
-function MyInfo(){
+function MyInfo(props){
     return (
-        <Fragment>
-            <Info>
-                <div className="wrap">
-                    <input type="checkbox"/><label>should do</label>
-                </div>
-                <div className="wrap">
-                    <input type="checkbox"/><label>done</label>
-                </div>
-                <div className="wrap">
-                    <input type="checkbox"/><label>not done</label>
-                </div>
-                <div className="wrap">
-                    <input type="checkbox"/><label>should do in near future</label>
-                </div>
-            </Info>
-        </Fragment>
+            <TodoItem>
+                    <input type="checkbox"/><label>{props.name}</label>
+            </TodoItem>
     )
 }
 
