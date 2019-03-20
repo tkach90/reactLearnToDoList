@@ -16,7 +16,8 @@ const TodoItem = styled.div`
 function MyInfo(props){
     return (
             <TodoItem>
-                    <input type="checkbox"/><label>{props.name}</label>
+                <input type="checkbox"/><label>{props.todo.name}</label>
+                <p>{props.todo.text}</p>
             </TodoItem>
     )
 }
