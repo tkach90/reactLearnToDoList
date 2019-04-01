@@ -13,9 +13,9 @@ const TodoItem = styled.div`
     color: palevioletred;
 `;
 
-function handleClickItem() {
-    return (console.log('Clicked!'));
-}
+// function handleClickItem() {
+//     return (console.log('Clicked!'));
+// }
 
 function Item(props){
     return (
