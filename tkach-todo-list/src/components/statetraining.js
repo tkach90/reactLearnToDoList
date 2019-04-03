@@ -20,7 +20,7 @@
 //         return (
 //             this.setState(prevState => {
 //                 return {
-//                     count: this.state.count = () => {this.generateString()}
+//                     count: this.generateString()
 //                 }
 //             })
 //         )

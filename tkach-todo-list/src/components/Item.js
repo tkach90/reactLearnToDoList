@@ -22,7 +22,8 @@ function Item(props){
             <TodoItem>
                 <input
                     type="checkbox"
-
+                    checked={props.item.completed}
+                    onChange={() => props.handleChange(props.item.id)}
                 />
                 <p>{props.item.text}</p>
             </TodoItem>
