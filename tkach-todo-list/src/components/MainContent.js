@@ -11,9 +11,17 @@ class MainContent extends PureComponent {
         super();
         this.state = {
             todos: todoData,
-            isLoading: true
+            isLoading: false,
+            character: {
+                name: 'Luke Skywalker',
+                gender: 'male',
+            },
+            loading: false,
+            firstName: '',
+            lastName: '',
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleFormChange = this.handleFormChange.bind(this);
     }
 
     componentDidMount() {
@@ -22,6 +30,15 @@ class MainContent extends PureComponent {
                 isLoading: false
             })
         }, 1500)
+
+        fetch('https://swapi.co/api/planets/1/')
+            .then(response => response.json())
+            .then(data => {
+                this.setState({
+                    character: data,
+                    loading: true,
+                })
+            })
     }
 
     handleChange(id) {
@@ -40,6 +57,13 @@ class MainContent extends PureComponent {
         );
     }
 
+    handleFormChange(event) {
+        const {name, value} = event.target;
+        this.setState({
+            [name]: value,
+        })
+    }
+
     render() {
         const itemComponents = this.state.todos.map(item =>
             <Item
@@ -47,6 +71,9 @@ class MainContent extends PureComponent {
                 item={item}
                 handleChange={this.handleChange}
             />);
+
+        const  text = this.state.loading ? this.state.character.name : 'loading...' ;
+
         return(
             <Fragment>
                 <main>
@@ -68,6 +95,27 @@ class MainContent extends PureComponent {
 
                         {/*<StateChanging/>*/}
                     {/*</Fragment>*/}
+                    <Fragment>
+                        {text}
+                    </Fragment>
+
+                    <form>
+                        <input
+                            type="text"
+                            value={this.state.firstName}
+                            name='firstName'
+                            placeholder='First Name'
+                            onChange={this.handleFormChange}
+                        />
+                        <br/>
+                        <input
+                            type="text"
+                            value={this.state.lastName}
+                            name='lastName'
+                            placeholder='Last Name'
+                            onChange={this.handleFormChange}/>
+                        <h1>{this.state.firstName} {this.state.lastName}</h1>
+                    </form>
                 </main>
             </Fragment>
         )

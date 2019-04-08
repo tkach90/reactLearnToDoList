@@ -18,6 +18,12 @@ const TodoItem = styled.div`
 // }
 
 function Item(props){
+    const completeStyle = {
+        fontStyle: 'italic',
+        color: '#cdcdcd',
+        textDecoration: 'line-through',
+    }
+
     return (
             <TodoItem>
                 <input
@@ -25,7 +31,7 @@ function Item(props){
                     checked={props.item.completed}
                     onChange={() => props.handleChange(props.item.id)}
                 />
-                <p>{props.item.text}</p>
+                <p style={props.item.completed ? completeStyle : null}>{props.item.text}</p>
             </TodoItem>
     )
 }
