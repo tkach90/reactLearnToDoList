@@ -10,7 +10,7 @@ function App() {
         <Fragment>
             <Navbar/>
             <MainContent/>
-            <Footer/>
+            {/*<Footer/>*/}
         </Fragment>
     )
 }

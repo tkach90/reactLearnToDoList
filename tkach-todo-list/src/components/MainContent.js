@@ -1,10 +1,19 @@
 import React, {Fragment, PureComponent} from 'react';
+import styled from 'styled-components';
 
 import Item from './Item';
 import todoData from './ToDoData';
 
 // import StateChanging from './statetraining';
 import Conditional from './Conditional';
+
+const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    margin: 2rem auto;
+    width: 30vw;
+`
+
 
 class MainContent extends PureComponent {
     constructor () {
@@ -22,6 +31,7 @@ class MainContent extends PureComponent {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleFormChange = this.handleFormChange.bind(this);
+        this.handleSubmitForm = this.handleSubmitForm.bind(this);
     }
 
     componentDidMount() {
@@ -58,10 +68,12 @@ class MainContent extends PureComponent {
     }
 
     handleFormChange(event) {
-        const {name, value} = event.target;
-        this.setState({
-            [name]: value,
-        })
+        const { value, name, type, checked } = event.target;
+
+    }
+
+    handleSubmitForm() {
+
     }
 
     render() {
@@ -99,7 +111,7 @@ class MainContent extends PureComponent {
                         {text}
                     </Fragment>
 
-                    <form>
+                    <Form>
                         <input
                             type="text"
                             value={this.state.firstName}
@@ -113,9 +125,43 @@ class MainContent extends PureComponent {
                             value={this.state.lastName}
                             name='lastName'
                             placeholder='Last Name'
-                            onChange={this.handleFormChange}/>
-                        <h1>{this.state.firstName} {this.state.lastName}</h1>
-                    </form>
+                            onChange={this.handleFormChange}
+                        />
+                        <br/>
+                        <input
+                            type="number"
+                            value={this.state.age}
+                            name='age'
+                            placeholder='Age'
+                            onChange={this.handleFormChange}
+                        />
+                        <br/>
+                        <label>
+                            <input
+                                type="radio"
+                                value={this.state.gender}
+                                name='gender'
+                                placeholder='Gender'
+                                checked={this.state === 'male'}
+                                onChange={this.handleFormChange}
+                            />
+                            Male
+                        </label>
+                        <br/>
+                        <label>
+                            <input
+                                type="radio"
+                                value={this.state.gender}
+                                name='gender'
+                                placeholder='Gender'
+                                checked={this.state === 'female'}
+                                onChange={this.handleFormChange}
+                            />
+                            Female
+                        </label>
+                        <br/>
+                        <button>Submit</button>
+                    </Form>
                 </main>
             </Fragment>
         )
