@@ -12,6 +12,10 @@ const Form = styled.form`
     flex-direction: column;
     margin: 2rem auto;
     width: 30vw;
+    
+    select {
+        margin: 1rem 1rem 1rem 0;
+    }
 `
 
 
@@ -28,6 +32,9 @@ class MainContent extends PureComponent {
             loading: false,
             firstName: '',
             lastName: '',
+            gender: '',
+            diet: ['vegetarian', 'kosher', 'lactose free']
+
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleFormChange = this.handleFormChange.bind(this);
@@ -69,6 +76,19 @@ class MainContent extends PureComponent {
 
     handleFormChange(event) {
         const { value, name, type, checked } = event.target;
+        type === 'checkbox' ? this.setState( {[name]: checked}) : this.setState({[value]: checked});
+
+
+        // let diet = this.state.diet;
+        this.setState(prevState => {
+                const updateState = prevState.this.state.diet.map(item => {
+                        return {
+                            diet: updateState
+                        }
+                    }
+                )
+            }
+        )
 
     }
 
@@ -139,10 +159,10 @@ class MainContent extends PureComponent {
                         <label>
                             <input
                                 type="radio"
-                                value={this.state.gender}
+                                value='male'
                                 name='gender'
                                 placeholder='Gender'
-                                checked={this.state === 'male'}
+                                checked={this.state.gender === 'male'}
                                 onChange={this.handleFormChange}
                             />
                             Male
@@ -151,13 +171,58 @@ class MainContent extends PureComponent {
                         <label>
                             <input
                                 type="radio"
-                                value={this.state.gender}
+                                value='female'
                                 name='gender'
                                 placeholder='Gender'
-                                checked={this.state === 'female'}
+                                checked={this.state.gender === 'female'}
                                 onChange={this.handleFormChange}
                             />
                             Female
+                        </label>
+                        <br/>
+                        <label>
+                            <select name="destination">
+                                <option value="this.state.destination">Dubai</option>
+                                <option value="this.state.destination">Amsterdam</option>
+                                <option value="this.state.destination">Singapore</option>
+                            </select>
+                            Destination
+                        </label>
+                        <br/>
+                        <label>
+                            <input
+                                type="checkbox"
+                                value={this.state.diet}
+                                name='vegetarian'
+                                placeholder='Diet'
+                                checked={this.state.name === 'vegetarian'}
+                                onChange={this.handleFormChange}
+                            />
+                            vegetarian
+                        </label>
+                        <br/>
+                        <label>
+                            <input
+                                type="checkbox"
+                                value={this.state.diet}
+                                name='kosher'
+                                placeholder='Diet'
+                                checked={this.state === 'kosher'}
+                                onChange={this.handleFormChange}
+                            />
+                            kosher
+                        </label>
+                        <br/>
+                        <label>
+                            <input
+                                type="checkbox"
+                                value={this.state.diet}
+                                name='lactose free'
+                                placeholder='Diet'
+                                checked={this.state === 'lactose free'}
+                                onChange={this.handleFormChange}
+                            />
+                            lactose free
                         </label>
                         <br/>
                         <button>Submit</button>
