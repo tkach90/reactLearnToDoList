@@ -13,10 +13,6 @@ const TodoItem = styled.div`
     color: palevioletred;
 `;
 
-// function handleClickItem() {
-//     return (console.log('Clicked!'));
-// }
-
 function Item(props){
     const completeStyle = {
         fontStyle: 'italic',
