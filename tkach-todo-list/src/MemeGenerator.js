@@ -6,13 +6,30 @@ class MemeGenerator extends PureComponent {
         this.state = {
             topText: '',
             bottomText: '',
-            randomImage: 'http://i.imgflip.com/1bij.jpg'
+            randomImage: 'http://i.imgflip.com/1bij.jpg',
+            allMemeImgs: [],
         }
+    }
+
+    componentDidMount() {
+        fetch('https://api.imgflip.com/get_memes')
+            .then(response => response.json())
+            .then(response => {
+                const {memes} = response.data;
+
+                this.setState({
+                    allMemeImgs: memes
+                });
+            });
     }
 
     render() {
         return (
-            <h1>Meme Generator Section</h1>
+            <Fragment>
+                <form className='meme-form'>
+
+                </form>
+            </Fragment>
         )
     }
 }
