@@ -20,6 +20,7 @@ class Form extends PureComponent {
 
     handleFormChange(event) {
         const { value, name, type, checked } = event.target;
+        console.log(checked);
         type === 'checkbox' ?
             this.setState( {
                 [name]: checked

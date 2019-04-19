@@ -84,7 +84,6 @@ function FormComponent(props) {
                         value={props.isVegan}
                         name='vegetarian'
                         placeholder='Diet'
-                        checked={props.isVegan === 'vegetarian'}
                         onChange={props.handleFormChange}
                     />
                     vegetarian
