@@ -16,7 +16,7 @@ class MainContent extends PureComponent {
                 name: 'Luke Skywalker',
                 gender: 'male',
             },
-            loading: false,
+            loading: true,
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -28,12 +28,13 @@ class MainContent extends PureComponent {
             })
         }, 1500)
 
-        fetch('https://swapi.co/api/planets/1/')
+        fetch('https://swapi.co/api/starships/13/')
             .then(response => response.json())
             .then(data => {
+                console.log(data);
                 this.setState({
                     character: data,
-                    loading: true,
+                    loading: false,
                 })
             })
     }
@@ -62,7 +63,7 @@ class MainContent extends PureComponent {
                 handleChange={this.handleChange}
             />);
 
-        const  text = this.state.loading ? this.state.character.name : 'loading...' ;
+        const  text = !this.state.loading ? this.state.character.name : 'loading...' ;
 
         return(
             <Fragment>
