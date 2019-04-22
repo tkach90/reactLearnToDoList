@@ -5,6 +5,7 @@ import todoData from './ToDoData';
 import FormContainer from './form/FormContainer';
 // import StateChanging from './statetraining';
 import Conditional from './Conditional';
+import AddTodoItemContainer from "./AddTodoItemContainer";
 
 class MainContent extends PureComponent {
     constructor () {
@@ -31,7 +32,6 @@ class MainContent extends PureComponent {
         fetch('https://swapi.co/api/starships/13/')
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 this.setState({
                     character: data,
                     loading: false,
@@ -91,6 +91,13 @@ class MainContent extends PureComponent {
                     </Fragment>
 
                     <FormContainer/>
+
+                    <AddTodoItemContainer
+                        addItem={this.addItem}
+                        inputElement = {this.inputElement}
+                        handleFormAddItem = {this.handleFormAddItem}
+                        currentItem={this.state.currentItem}
+                    />
                 </main>
             </Fragment>
         )
