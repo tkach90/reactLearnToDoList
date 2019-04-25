@@ -32,6 +32,7 @@ class MemeGenerator extends PureComponent {
         };
 
         this.handleChangeForm = this.handleChangeForm.bind(this);
+        this.handleClickGenButton = this.handleClickGenButton.bind(this);
     }
 
     componentDidMount() {
@@ -54,6 +55,10 @@ class MemeGenerator extends PureComponent {
         });
     }
 
+    handleClickGenButton() {
+
+    }
+
     render() {
         return (
             <Fragment>
@@ -72,7 +77,11 @@ class MemeGenerator extends PureComponent {
                         value={this.state.bottomText}
                         onChange={this.handleChangeForm}
                     />
-                    <button>Generate</button>
+                    <button
+                        onClick={this.handleClickGenButton}
+                    >
+                        Generate
+                    </button>
                 </form>
 
                 <Meme>
