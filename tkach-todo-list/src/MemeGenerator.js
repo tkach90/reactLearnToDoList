@@ -1,11 +1,11 @@
-import React, { Fragment, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 
 const Meme = styled.div`
     position: relative;
     display: flex;
     justify-content: center;
-    color: #fff;
+    color: red;
 
       h2:first-of-type {
         position: absolute;
@@ -30,9 +30,6 @@ class MemeGenerator extends PureComponent {
             randomImage: 'http://i.imgflip.com/1bij.jpg',
             allMemeImgs: [],
         };
-
-        this.handleChangeForm = this.handleChangeForm.bind(this);
-        this.handleClickGenButton = this.handleClickGenButton.bind(this);
     }
 
     componentDidMount() {
@@ -47,7 +44,7 @@ class MemeGenerator extends PureComponent {
             });
     }
 
-    handleChangeForm(event) {
+    handleChangeForm = (event) => {
         const { name, value } = event.target;
 
         this.setState({
@@ -55,14 +52,24 @@ class MemeGenerator extends PureComponent {
         });
     }
 
-    handleClickGenButton() {
+    handleSubmit = (event) => {
+        event.preventDefault();
+
+        const randImg = Math.floor(Math.random() * this.state.allMemeImgs.length);
+        const generatedImg = this.state.allMemeImgs[randImg].url;
+
+        this.setState({randomImage: generatedImg })
+
 
     }
 
     render() {
         return (
-            <Fragment>
-                <form>
+            <>
+                <form
+                    onSubmit={
+                        this.handleSubmit
+                }>
                     <input
                         type="text"
                         placeholder='Bottom text'
@@ -89,7 +96,7 @@ class MemeGenerator extends PureComponent {
                     <h2>{this.state.topText}</h2>
                     <h2>{this.state.bottomText}</h2>
                 </Meme>
-            </Fragment>
+            </>
         )
     }
 }
